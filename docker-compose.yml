@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  php:
+    build: docker
+    env_file:
+      - .env
+    volumes:
+      - .:/var/www/html
+      - ~/.composer:/root/.composer
+    ports:
+      - 80:80
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    ports:
+        - 1025:1025
+        - 8025:8025
+
+  rabbitmq:
+    image: rabbitmq:3.6-management
+    ports:
+        - 60005:15672
+        - 5672:5672
+    environment:
+        - RABBITMQ_DEFAULT_USER=admin
+        - RABBITMQ_DEFAULT_PASS=admin
