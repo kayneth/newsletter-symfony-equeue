@@ -57,7 +57,7 @@ class NewsletterMailer
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function senNewsletterEmailMessage(string $email,string $newsletter, $username = null)
+    public function sendNewsletterEmailMessage(string $email, string $newsletter, $username = null)
     {
         $rendered = $this->templating->render('Newsletter/Mail/newsletter.html.twig', array(
             'newsletter' => $newsletter,

@@ -1,0 +1,9 @@
+enqueue:
+    transport:
+        default: 'rabbitmq_amqp'
+        rabbitmq_amqp:
+            host: rabbitmq
+            port: 5672
+            user: admin
+            pass: admin
+    client: ~

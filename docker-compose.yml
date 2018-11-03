@@ -10,6 +10,8 @@ services:
       - ~/.composer:/root/.composer
     ports:
       - 80:80
+    links:
+      - rabbitmq
 
   mailhog:
     image: mailhog/mailhog:latest

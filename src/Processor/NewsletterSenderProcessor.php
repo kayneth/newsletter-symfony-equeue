@@ -24,12 +24,15 @@ class NewsletterSenderProcessor implements PsrProcessor, TopicSubscriberInterfac
 
     public function process(PsrMessage $message, PsrContext $session)
     {
-        list('email' => $email, 'username' => $username, 'newsletter' => $newsletter) = $message->getBody();
+        list(
+            'email' => $email,
+            'username' => $username,
+            'newsletter' => $newsletter
+        ) = json_decode($message->getBody(), true);
 
         try{
-            $this->mailer->senNewsletterEmailMessage($email, $newsletter, $username);
-        } catch (\Exception $exception)
-        {
+            $this->mailer->sendNewsletterEmailMessage($email, $newsletter, $username);
+        } catch (\Exception $exception) {
             return self::REQUEUE;
         }
 

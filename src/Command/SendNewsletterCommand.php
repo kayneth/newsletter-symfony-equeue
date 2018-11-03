@@ -22,7 +22,7 @@ class SendNewsletterCommand extends Command
      */
     private $repository;
 
-    public function __construct(NewsletterSubscriptionRepository $repository ,ProducerInterface $producer)
+    public function __construct(NewsletterSubscriptionRepository $repository, ProducerInterface $producer)
     {
         $this->producer = $producer;
         $this->repository = $repository;
@@ -43,7 +43,7 @@ class SendNewsletterCommand extends Command
         $newsletterSubscriptions = $this->repository->findByNewsletterName('newsletter 1');
         foreach ($newsletterSubscriptions as $newsletterSubscription)
         {
-            $this->producer->sendCommand('newsletter', [
+            $this->producer->sendEvent('newsletter', [
                 'email' => $newsletterSubscription->getEmail(),
                 'username' => $newsletterSubscription->getUsername(),
                 'newsletter' => $newsletterSubscription->getNewsletter()->getName(),

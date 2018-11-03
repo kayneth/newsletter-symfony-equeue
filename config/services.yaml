@@ -24,6 +24,13 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    # Enqueue processors
+    App\Processor\:
+        resource: '../src/Processor'
+        public: true
+        tags:
+            - { name: 'enqueue.client.processor' }
+
 
 #    App\Mailer\NewsletterMailer:
 #        resource: '../src/Mailer/NewsletterMailer'
